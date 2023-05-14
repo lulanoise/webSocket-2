@@ -1,5 +1,6 @@
 package co.develhope.websocket2.controller;
 
+import co.develhope.websocket2.entities.ClientMessageDTO;
 import co.develhope.websocket2.entities.MessageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,8 +23,8 @@ public class NotificationController {
     }
 
     @PostMapping("/client-message")
-    public ResponseEntity clientMessage(@RequestBody MessageDTO messageDTO) {
-        simpMessagingTemplate.convertAndSend("/topic/broadcast", messageDTO);
+    public ResponseEntity clientMessage(@RequestBody ClientMessageDTO clientMessageDTO) {
+        simpMessagingTemplate.convertAndSend("/topic/broadcast", clientMessageDTO);
         return ResponseEntity.status(HttpStatus.OK).build();
 
     }
